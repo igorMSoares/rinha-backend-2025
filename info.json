@@ -1,0 +1,8 @@
+{
+  "name": "Igor M Soares",
+  "social": ["https://www.linkedin.com/in/igormsoares"],
+  "source-code-repo": "https://github.com/igorMSoares/rinha-backend-2025",
+  "langs": ["go"],
+  "storages": ["redis"],
+  "load-balancers": ["nginx"]
+}

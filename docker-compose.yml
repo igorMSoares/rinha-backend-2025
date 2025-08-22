@@ -25,7 +25,7 @@ services:
     environment:
       - GOMAXPROCS=1
       - DISPATCHER_REDIS_POOL=60
-      - COST_WEIGHT=0.75
+      - COST_WEIGHT=0.25
       - LATENCY_LIMIT=100ms
       - LB_CIRCUIT_TIMEOUT=1.5s
       - CB_RECOVERY_TIMEOUT=0.5s
@@ -52,7 +52,7 @@ services:
     environment:
       - GOMAXPROCS=1
       - DISPATCHER_REDIS_POOL=60
-      - COST_WEIGHT=0.75
+      - COST_WEIGHT=0.25
       - LATENCY_LIMIT=100ms
       - LB_CIRCUIT_TIMEOUT=1.5s
       - CB_RECOVERY_TIMEOUT=0.5s

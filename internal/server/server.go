@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"math"
 	"net/http"
 	"strconv"
 	"sync"
@@ -64,6 +63,10 @@ func (s *Server) EnqueueRequest(reqPayload []byte) error {
 }
 
 func (s *Server) handleCountCmd(cmd *redis.SliceCmd) (int64, error) {
+	if cmd == nil {
+		return int64(0), nil
+	}
+
 	result, err := cmd.Result()
 	if err != nil {
 		return 0, err
@@ -87,6 +90,10 @@ func (s *Server) handleCountCmd(cmd *redis.SliceCmd) (int64, error) {
 }
 
 func (s *Server) handleSumCmd(cmd *redis.SliceCmd) (float64, error) {
+	if cmd == nil {
+		return 0.0, nil
+	}
+
 	result, err := cmd.Result()
 	if err != nil {
 		return 0.0, err
@@ -121,10 +128,8 @@ func (s *Server) handleSummaryReq(w http.ResponseWriter, r *http.Request) {
 
 	// log.Printf("from: %s | to: %s", paramFrom, paramTo)
 
-	tsFrom := 0
-	tsTo := math.MaxInt64
-	tsFromMilli := int64(tsFrom)
-	tsToMilli := int64(tsTo)
+	tsFromMilli := int64(0)
+	tsToMilli := int64(0)
 
 	if paramFrom != "" {
 		parsedTime, err := time.Parse(time.RFC3339Nano, paramFrom)
@@ -133,7 +138,6 @@ func (s *Server) handleSummaryReq(w http.ResponseWriter, r *http.Request) {
 		}
 
 		tsFromMilli = parsedTime.UnixMilli()
-		tsFrom = int(tsFromMilli)
 	}
 	if paramTo != "" {
 		parsedTime, err := time.Parse(time.RFC3339Nano, paramTo)
@@ -142,7 +146,6 @@ func (s *Server) handleSummaryReq(w http.ResponseWriter, r *http.Request) {
 		}
 
 		tsToMilli = parsedTime.UnixMilli()
-		tsTo = int(tsToMilli)
 	}
 
 	ctx := context.Background()

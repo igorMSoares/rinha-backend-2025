@@ -16,7 +16,7 @@ services:
           memory: "20MB"
 
   payment-proxy-1: &proxy1
-    image: igormsoares/rinha-2025-payment-proxy
+    image: payment-proxy
     build:
       context: .
     container_name: payment-proxy-1

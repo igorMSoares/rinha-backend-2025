@@ -4,6 +4,7 @@ Sistema de encaminhamento de pagamentos para a minha solução da [Rinha de Back
 
 ## Arquitetura
 
+<img width="1489" height="1168" alt="arquitetura-rinha-2025" src="https://github.com/user-attachments/assets/ef71912e-6b79-4c75-81f4-ef8954eda812" />
 
 
 ## Serviços

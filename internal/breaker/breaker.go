@@ -3,7 +3,6 @@ package breaker
 import (
 	"context"
 	"errors"
-	"sync"
 	"sync/atomic"
 	"time"
 
@@ -23,8 +22,6 @@ var (
 )
 
 type CircuitBreaker struct {
-	sync.RWMutex
-
 	state       *CircuitBreakerState
 	CircuitOpen atomic.Bool
 }

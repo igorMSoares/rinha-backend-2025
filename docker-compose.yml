@@ -22,17 +22,8 @@ services:
     container_name: payment-proxy-1
     hostname: payment-proxy-1
     restart: always
-    environment:
-      - GOMAXPROCS=1
-      - DISPATCHER_REDIS_POOL=60
-      - COST_WEIGHT=0.25
-      - LATENCY_LIMIT=100ms
-      - LB_CIRCUIT_TIMEOUT=1.5s
-      - CB_RECOVERY_TIMEOUT=0.5s
-      - CB_RECOVERY_ATTEMPTS=50
-      - CB_FAILURE_THRESHOLD=5
-      - PROCESSOR_REQ_TIMEOUT=10s
-      - MAX_WORKERS=15
+    env_file:
+      - .env
     networks:
       - payment-proxy
       - payment-processor
@@ -49,17 +40,8 @@ services:
     <<: *proxy1
     container_name: payment-proxy-2
     hostname: payment-proxy-2
-    environment:
-      - GOMAXPROCS=1
-      - DISPATCHER_REDIS_POOL=60
-      - COST_WEIGHT=0.25
-      - LATENCY_LIMIT=100ms
-      - LB_CIRCUIT_TIMEOUT=1.5s
-      - CB_RECOVERY_TIMEOUT=0.5s
-      - CB_RECOVERY_ATTEMPTS=50
-      - CB_FAILURE_THRESHOLD=5
-      - PROCESSOR_REQ_TIMEOUT=10s
-      - MAX_WORKERS=15
+    env_file:
+      - .env
 
   redis:
     image: redis:latest

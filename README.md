@@ -47,6 +47,10 @@ No `redis` os valores e contagem são atrelados ao timestamp da requisição, pe
 Arquivo `.env` de referência:
 
 ```bash
+## Usa uma única thread do sistema operacional para evitar constantes mudanças de contexto
+GOMAXPROCS=1
+
+## Pool de conexões do Redis
 DISPATCHER_REDIS_POOL=60
 
 ### LOAD BALANCER ###
@@ -77,3 +81,25 @@ PROCESSOR_REQ_TIMEOUT=10s
 ## Qtd total de workers
 MAX_WORKERS=15
 ```
+
+## Testes
+
+Para executar o teste parcial (divulgado antes de encerrar o período de submissão):
+
+```bash
+# Estando na raiz do projeto
+cd rinha-test
+
+./run-partial.sh
+```
+
+Para executar o teste final:
+
+```bash
+# Estando na raiz do projeto
+cd rinha-test
+
+./run-final.sh
+```
+
+Os resultados serão salvos em `./rinha-test/partial-results.json` e `./rinha-test/final-results.json`
